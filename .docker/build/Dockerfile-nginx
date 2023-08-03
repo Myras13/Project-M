@@ -1,0 +1,7 @@
+FROM nginx:latest
+
+COPY nginx/default.conf /etc/nginx/conf.d/
+
+RUN echo "upstream php-upstream { server saphira:9000; server brisingr:9001;}" > /etc/nginx/conf.d/upstream.conf
+
+RUN usermod -u 1000 www-data
