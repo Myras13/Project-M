@@ -1,8 +1,8 @@
-version: "3.7"
+version: "3.9"
 services:
   nginx:
     build:
-      context: .
+      context: ./build/
       dockerfile: Dockerfile-nginx
     volumes:
       - ../Saphira/:/var/www/project/:cached
@@ -12,31 +12,51 @@ services:
       - main_net
     depends_on:
       - saphira
-    links:
-      - saphira
+      - brisingr
+
   saphira:
     build:
-      context: .
+      context: ./build/
       dockerfile: Dockerfile-saphira
     volumes:
       - ../Saphira/:/var/www/project/:cached # This should be the same for NGINX.
     networks:
       - main_net
+      - apps_net
+    ports:
+      - "9000:9000"
+
+  brisingr:
+    build:
+      context: ./build/
+      dockerfile: Dockerfile-brisingr
+    volumes:
+      - ../Brisingr/:/var/www/project/:cached # This should be the same for NGINX.
+    networks:
+      - main_net
+      - apps_net
       - mysql_net
+    ports:
+      - "9001:9001"
+
   db: #address
     image: mariadb:10.2.29
     ports:
       - "3317:3306" #patern: from-within
     environment:
-      - MYSQL_DATABASE=docker_sf
-      - MYSQL_ROOT_PASSWORD=YVqHxkPbrajF9C
+      - MYSQL_DATABASE=project_m
+      - MYSQL_USER=saphira_app
+      - MYSQL_PASSWORD=YVqHxkPbrajF9C
+      - MYSQL_ROOT_PASSWORD=MwIwhXLMXjzWRvWktgec
     volumes:
       - ./mysqldata:/var/lib/mysql
-      - ./build/db/:/docker-entrypoint-initdb.d/
+      - ./build/db/init/:/docker-entrypoint-initdb.d/
     networks:
       - mysql_net
 networks:
   main_net:
     driver: bridge
   mysql_net:
+    driver: bridge
+  apps_net:
     driver: bridge
