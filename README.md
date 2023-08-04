@@ -1,1 +1,2 @@
-# Project-M 
+# Project-M
+author: Michał Marciniak (Myras13, Bjaskular)
