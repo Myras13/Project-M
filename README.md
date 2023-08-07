@@ -1,6 +1,8 @@
 # Project-M
+
 Projekt hobbistyczny - Smart book w wersji przeglądarkowej.
-Aplikacja umożliwi użytkownikowi w wygodny sposób czytać książki anglojęzyczne poprzez wbudowany mechanizm sprawdzania znaczenia zaznaczonego słowa w tym samym języku.
+
+System umożliwi użytkownikowi w wygodny sposób czytać książki anglojęzyczne poprzez wbudowany mechanizm sprawdzania znaczenia zaznaczonego słowa w tym samym języku.
 
 Autor: Michał Marciniak (Myras13, Bjaskular)
 
