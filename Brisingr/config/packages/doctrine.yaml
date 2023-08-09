@@ -1,12 +1,16 @@
 doctrine:
     dbal:
-        url: '%env(resolve:DATABASE_URL)%'
-        port: 55321
+        connections:
+            default:
+                driver: 'pdo_sqlite'
+                url: '%env(resolve:DATABASE_URL)%'
+                profiling_collect_backtrace: '%kernel.debug%'
+        #url: '%env(resolve:DATABASE_URL)%'
+        #port: 55321
+        #profiling_collect_backtrace: '%kernel.debug%'
         # IMPORTANT: You MUST configure your server version,
         # either here or in the DATABASE_URL env var (see .env file)
         #server_version: '15'
-
-        profiling_collect_backtrace: '%kernel.debug%'
     orm:
         auto_generate_proxy_classes: true
         enable_lazy_ghost_objects: true
