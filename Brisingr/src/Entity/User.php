@@ -34,7 +34,7 @@ class User
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $deleted_at = null;
 
-    #[ORM\Column(options={"default": false})]
+    #[ORM\Column]
     private ?bool $isVerified = null;
 
     public function getId(): ?int
