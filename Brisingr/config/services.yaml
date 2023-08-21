@@ -21,5 +21,18 @@ services:
             - '../src/Kernel.php'
             - '../src/DTO'
 
+
+    ##########################################################################################
+    # App\Repository\UserRepository: ~
+    # App\Repository\Contracts\UserRepositoryInterface: '@App\Repository\UserRepository'
+    
+    # App\Services\UserService: ~
+    # App\Services\Contracts\UserServiceInterface: '@App\Services\UserService'
+    ##########################################################################################
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    App\EventListeners\ExceptionListener:
+        tags:
+            - {name: kernel.event_listener, event: kernel.exception}
